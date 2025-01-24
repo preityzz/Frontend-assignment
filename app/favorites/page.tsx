@@ -17,7 +17,7 @@ export default function FavoritesPage() {
           className="max-w-4xl mx-auto text-center"
         >
           <h1
-            className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 
+            className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 
                          bg-clip-text text-transparent mb-8"
           >
             Your Favorite Quotes
