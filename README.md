@@ -1,29 +1,30 @@
-# QuoteVerse
+# QuoteVerse - Quote Generator App
 
-A modern quote generator application built with Next.js 13, featuring quote browsing, favorites, and theme customization.
+A modern web application for browsing and saving inspiring quotes, built with Next.js 13, TypeScript, and Tailwind CSS.
 
-## Quick Start
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+
-- npm/yarn
-- Git
+- Node.js 18.x or higher
+- npm or yarn
 
 ### Installation
 
+1. Clone the repository
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/quoteverse.git
+git clone <repository-url>
+cd frontend-assignment
+```
 
-# Navigate to project
-cd quoteverse
-
-# Install dependencies
+2.Install dependencies
+```bash
 npm install
 # or
 yarn install
+```
 
-# Start development server
+3.Run the development server
+```bash
 npm run dev
 # or
 yarn dev
@@ -33,23 +34,23 @@ yarn dev
 
 ## Project Structure
 
-frontend-assignment/
-├── app/
-│   ├── layout.tsx        # Root layout
-│   ├── page.tsx         # Home page
-│   ├── random/          # Random quote page
-│   └── favorites/       # Favorites page
-├── components/
-│   ├── QuoteCard.tsx    # Quote display
-│   ├── Navbar.tsx       # Navigation
-│   └── Pagination.tsx   # Page controls
-├── context/
-│   ├── ThemeContext.tsx # Theme management
-│   └── FavoriteContext.tsx # Favorites state
-├── utils/
-│   └── api.ts          # API functions
-└── types/
-    └── quote.ts        # TypeScript types
+* frontend-assignment/
+* ├── app/
+* │   ├── layout.tsx        # Root layout
+* │   ├── page.tsx         # Home page
+* │   ├── random/          # Random quote page
+* │   └── favorites/       # Favorites page
+* ├── components/
+* │   ├── QuoteCard.tsx    # Quote display
+* │   ├── Navbar.tsx       # Navigation
+* │   └── Pagination.tsx   # Page controls
+* ├── context/
+* │   ├── ThemeContext.tsx # Theme management
+* │   └── FavoriteContext.tsx # Favorites state
+* ├── utils/
+* │   └── api.ts          # API functions
+* └── types/
+*    └── quote.ts        # TypeScript types
 
 
 ## Features
