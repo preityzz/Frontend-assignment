@@ -56,7 +56,6 @@ export default function QuotesPage() {
         </div>
       </section>
 
-      
       <main className="px-4 sm:px-6 lg:px-8 pb-12">
         <div className="max-w-6xl mx-auto">
           <section className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
