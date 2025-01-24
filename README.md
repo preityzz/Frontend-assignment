@@ -1,6 +1,6 @@
 # QuoteVerse - Quote Generator App
 
-A modern web application for browsing and saving inspiring quotes, built with Next.js 13,React, TypeScript, and Tailwind CSS.
+A modern web application for browsing and saving inspiring quotes, built with Next.js 14,React, TypeScript, and Tailwind CSS.
 
 ## Getting Started
 

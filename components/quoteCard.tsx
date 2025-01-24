@@ -53,15 +53,22 @@ export default function QuoteCard({ quote }: QuoteCardProps) {
               }
             >
               {favorite ? (
-                <FaHeart className="w-5 h-5 text-red-500" />
+                <FaHeart
+                  className="w-5 h-5 text-red-500"
+                  title="Remove from favorites"
+                />
               ) : (
-                <FaRegHeart className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+                <FaRegHeart
+                  className="w-5 h-5 text-gray-400 dark:text-gray-500"
+                  title="Add to favorites"
+                />
               )}
             </button>
             <button
               onClick={copyToClipboard}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
               aria-label="Copy quote"
+              title="Copy quote"
             >
               <FaCopy className="w-5 h-5 text-gray-400 dark:text-gray-500" />
             </button>
