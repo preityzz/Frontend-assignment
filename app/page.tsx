@@ -1,60 +1,30 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { getQuotes, getRandomQuote } from "../utils/api";
+import { getQuotes } from "../utils/api";
 import type { Quote } from "../types/quote";
 import QuoteCard from "../components/quoteCard";
 import Pagination from "../components/pagination";
 
-export default function Home() {
+export default function QuotesPage() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
-  const [loading, setLoading] = useState({
-    quotes: false,
-    random: false,
-  });
-  const [error, setError] = useState<{
-    quotes: string | null,
-    random: string | null,
-  }>({
-    quotes: null,
-    random: null,
-  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchQuotes = async (page: number) => {
-    setLoading((prev) => ({ ...prev, quotes: true }));
-    setError((prev) => ({ ...prev, quotes: null }));
+    setLoading(true);
+    setError(null);
 
     try {
       const data = await getQuotes(page);
       setQuotes(data.quotes);
       setTotalPages(Math.ceil(data.total / data.limit));
-    } catch (err) {
-      setError((prev) => ({
-        ...prev,
-        quotes: `Failed to fetch quotes: ${err instanceof Error ? err.message : 'Please try again.'}`,
-      }));
+    } catch {
+      setError("Failed to fetch quotes. Please try again.");
     } finally {
-      setLoading((prev) => ({ ...prev, quotes: false }));
-    }
-  };
-
-  const fetchRandomQuote = async () => {
-    setLoading((prev) => ({ ...prev, random: true }));
-    setError((prev) => ({ ...prev, random: null }));
-
-    try {
-      const quote = await getRandomQuote();
-      setRandomQuote(quote);
-    } catch (err) {
-      setError((prev) => ({
-        ...prev,
-        random: `Failed to fetch random quote: ${err instanceof Error ? err.message : 'Please try again.'}`,
-      }));
-    } finally {
-      setLoading((prev) => ({ ...prev, random: false }));
+      setLoading(false);
     }
   };
 
@@ -63,58 +33,73 @@ export default function Home() {
   }, [currentPage]);
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-bold text-center mb-12 text-gray-900">
-          Inspiring Quotes
-        </h1>
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-white">
+      {/* Hero Section - Reduced padding and font size */}
+      <section className="py-8 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Discover Inspiring{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+              Quotes
+            </span>
+          </h1>
+          <p className="text-base text-gray-600 mb-4 max-w-2xl mx-auto">
+            Find wisdom and inspiration from the world&apos;s greatest minds.
+          </p>
+        </div>
+      </section>
 
-        <section className="bg-white rounded-xl shadow-lg p-8 mb-12">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-            Random Quote
-          </h2>
-          <button
-            onClick={fetchRandomQuote}
-            disabled={loading.random}
-            className="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white rounded-lg
-                     hover:bg-indigo-700 transition-colors disabled:opacity-50"
-          >
-            {loading.random ? "Generating..." : "Get Random Quote"}
-          </button>
-          {error.random && <p className="mt-4 text-red-600">{error.random}</p>}
-          {randomQuote && (
-            <div className="mt-6">
-              <QuoteCard quote={randomQuote} />
+      {/* Main Content - Adjusted spacing */}
+      <main className="px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="max-w-6xl mx-auto">
+          <section className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3">
+              <h2 className="text-lg font-bold text-white">Quote Collection</h2>
             </div>
-          )}
-        </section>
 
-        <section className="bg-white rounded-xl shadow-lg p-8">
-          <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-            Quote Collection
-          </h2>
-          {loading.quotes && (
-            <div className="flex justify-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+            <div className="p-6">
+              {loading && (
+                <div className="flex justify-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-600"></div>
+                </div>
+              )}
+
+              {error && (
+                <div className="text-center py-6">
+                  <p className="text-red-600 text-sm mb-3">{error}</p>
+                  <button
+                    onClick={() => fetchQuotes(currentPage)}
+                    className="text-purple-600 hover:text-purple-700 text-sm font-medium"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              )}
+
+              <div className="space-y-4">
+                {quotes.map((quote) => (
+                  <div
+                    key={quote.id}
+                    className="transform transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <QuoteCard quote={quote} />
+                  </div>
+                ))}
+              </div>
+
+              {quotes.length > 0 && (
+                <div className="mt-6 flex justify-center">
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                  />
+                </div>
+              )}
             </div>
-          )}
-          {error.quotes && (
-            <p className="text-center text-red-600 my-4">{error.quotes}</p>
-          )}
-          <div className="space-y-6">
-            {quotes.map((quote) => (
-              <QuoteCard key={quote.id} quote={quote} />
-            ))}
-          </div>
-          {quotes.length > 0 && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          )}
-        </section>
-      </div>
-    </main>
+          </section>
+        </div>
+      </main>
+    </div>
   );
 }
