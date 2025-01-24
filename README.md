@@ -1,6 +1,6 @@
 # QuoteVerse - Quote Generator App
 
-A modern web application for browsing and saving inspiring quotes, built with Next.js 13, TypeScript, and Tailwind CSS.
+A modern web application for browsing and saving inspiring quotes, built with Next.js 13,React, TypeScript, and Tailwind CSS.
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ A modern web application for browsing and saving inspiring quotes, built with Ne
 
 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone <https://github.com/preityzz/Frontend-assignment.git>
 cd frontend-assignment
 ```
 
@@ -36,21 +36,21 @@ yarn dev
 
 * frontend-assignment/
 * ├── app/
-* │   ├── layout.tsx        # Root layout
-* │   ├── page.tsx         # Home page
-* │   ├── random/          # Random quote page
-* │   └── favorites/       # Favorites page
+*     ├── layout.tsx        # Root layout
+*     ├── page.tsx         # Home page
+*     ├── random/          # Random quote page
+*     └── favorites/       # Favorites page
 * ├── components/
-* │   ├── QuoteCard.tsx    # Quote display
-* │   ├── Navbar.tsx       # Navigation
-* │   └── Pagination.tsx   # Page controls
+*     ├── QuoteCard.tsx    # Quote display
+*     ├── Navbar.tsx       # Navigation
+*     ├── themeswitch.tsx # Theme management
+*     └── Pagination.tsx   # Page controls     
 * ├── context/
-* │   ├── ThemeContext.tsx # Theme management
-* │   └── FavoriteContext.tsx # Favorites state
+*     └── FavoriteContext.tsx # Favorites state
 * ├── utils/
-* │   └── api.ts          # API functions
+*     └── api.ts          # API functions
 * └── types/
-*    └── quote.ts        # TypeScript types
+*     └── quote.ts        # TypeScript types
 
 
 ## Features

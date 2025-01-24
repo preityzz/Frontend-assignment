@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useFavorites } from "../context/favoriteContext";
+import ThemeSwitch from "./themeSwitch";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -15,7 +16,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-gradient-to-r from-purple-600 to-indigo-600">
+    <nav className="bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-800 dark:to-indigo-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-white font-bold text-xl">
@@ -41,6 +42,7 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
+            <ThemeSwitch />
           </div>
         </div>
       </div>

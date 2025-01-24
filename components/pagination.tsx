@@ -17,8 +17,12 @@ export default function Pagination({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border
-                   border-gray-300 rounded-md hover:bg-gray-50 
+          className="px-4 py-2 text-sm font-medium 
+                   text-gray-700 dark:text-gray-300 
+                   bg-white dark:bg-gray-800 
+                   border border-gray-300 dark:border-gray-600 
+                   rounded-md 
+                   hover:bg-gray-50 dark:hover:bg-gray-700
                    disabled:opacity-50 disabled:cursor-not-allowed
                    transition-colors duration-200"
           aria-label="Previous page"
@@ -39,19 +43,26 @@ export default function Pagination({
           </svg>
         </button>
 
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-700">
-            Page{" "}
-            <span className="font-bold text-purple-600">{currentPage}</span> of{" "}
-            <span className="font-bold text-purple-600">{totalPages}</span>
+        <span className="text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors">
+          Page{" "}
+          <span className="font-bold text-purple-600 dark:text-purple-400">
+            {currentPage}
+          </span>{" "}
+          of{" "}
+          <span className="font-bold text-purple-600 dark:text-purple-400">
+            {totalPages}
           </span>
-        </div>
+        </span>
 
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border
-                   border-gray-300 rounded-md hover:bg-gray-50 
+          className="px-4 py-2 text-sm font-medium 
+                   text-gray-700 dark:text-gray-300 
+                   bg-white dark:bg-gray-800 
+                   border border-gray-300 dark:border-gray-600 
+                   rounded-md 
+                   hover:bg-gray-50 dark:hover:bg-gray-700
                    disabled:opacity-50 disabled:cursor-not-allowed
                    transition-colors duration-200"
           aria-label="Next page"
